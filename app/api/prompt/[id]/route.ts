@@ -10,11 +10,9 @@ export const GET = async (req: Request, {params}: any) => {
 
         if(!prompts) return new Response("Prompt not found")
 
-        return new Response(JSON.stringify(prompts), {
-                 })
+        return new Response(JSON.stringify(prompts))
     } catch (error) {
-        return Response.json(error), {
-                 }
+        return Response.json(error)
     }
 }
 
