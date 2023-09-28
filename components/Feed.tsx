@@ -35,9 +35,6 @@ export default function Feed() {
   
   const [post, setPost] = useState([]);
   const [searchText, setSearchText] = useState("");
-  // const [searchTimeOut, setSearchTimeOut] = useState(null);
-  // const [searchedResult, setSearchedResult] = useState([]);
-
   
   const fetchPosts = async () => {
     await axios.get("/api/prompt").then((res) => {
@@ -54,18 +51,6 @@ export default function Feed() {
     fetchPosts();
 
   }, [searchText]);
-
-
-  // const filterPrompts = (searchtext: any) => {
-  //   const regex = new RegExp(searchtext, "i");
-
-  //   return post.filter(
-  //     (item: PostType) =>
-  //       regex.test(item.creator.username) ||
-  //       regex.test(item.prompt) ||
-  //       regex.test(item.tag)
-  //   );
-  // };
 
   const handleAddLike = (item: PostType) => {
 
@@ -91,21 +76,6 @@ export default function Feed() {
       )
   }
 
-
-  // const handleAddLike = (item: any) => {
-  //   let newItems: any = post.map((i: PostType) => {
-  //     if (i._id === item._id) {
-  //       return {
-  //         ...i,
-  //         like: i.like + 1
-  //       };
-  //     }
-
-  //     return i;
-  //   });
-  //   setPost(newItems);
-  // };
-
   const handleTagClick = (e: any) => {
     setSearchText(e);
   };
@@ -113,7 +83,6 @@ export default function Feed() {
   const handleClearText = () => setSearchText('')
 
   const handleSearchChange = (e: any) => {
-    // clearTimeout(searchTimeOut);
       setSearchText(e.target.value);
   };
 

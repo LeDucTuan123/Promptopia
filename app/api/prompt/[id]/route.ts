@@ -8,15 +8,13 @@ export const GET = async (req: Request, {params}: any) => {
 
         const prompts = await Prompt.findById(params.id).populate('creator')
 
-        if(!prompts) return new Response("Prompt not found", {status: 404})
+        if(!prompts) return new Response("Prompt not found")
 
         return new Response(JSON.stringify(prompts), {
-            status: 200
-        })
+                 })
     } catch (error) {
         return Response.json(error), {
-            status: 500
-        }
+                 }
     }
 }
 
@@ -29,7 +27,7 @@ export const PATCH = async (req: Request, {params}: any) => {
 
         const existingPrompt = await Prompt.findById(params.id);
 
-        if(!existingPrompt) return new Response('Prompt not found', {status: 404})
+        if(!existingPrompt) return new Response('Prompt not found')
 
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
@@ -37,10 +35,10 @@ export const PATCH = async (req: Request, {params}: any) => {
 
         await existingPrompt.save();
 
-        return new Response(JSON.stringify(existingPrompt), {status: 200})
+        return new Response(JSON.stringify(existingPrompt))
 
     } catch (error) {
-        return new Response('Failed to updata prompt', {status: 500})
+        return new Response('Failed to updata prompt')
     }
 }
 
@@ -49,10 +47,10 @@ export const DELETE = async (req: Request, {params}: any) => {
     try {
         await Prompt.findByIdAndRemove(params.id)
 
-        return new Response("Promps delete successfully", {status: 200})
+        return new Response("Promps delete successfully")
 
     } catch (error) {
-        return new Response("Failded to delete promps", {status: 500})
+        return new Response("Failded to delete promps")
         
     }
 }
@@ -66,16 +64,16 @@ export const PUT = async (req: Request, {params}: any) => {
 
         const existingPrompt = await Prompt.findById(params.id);
 
-        if(!existingPrompt) return new Response('like not found', {status: 404})
+        if(!existingPrompt) return new Response('like not found')
 
         existingPrompt.like = like + 1;
 
         await existingPrompt.save();
 
-        return new Response(JSON.stringify(existingPrompt), {status: 200})
+        return new Response(JSON.stringify(existingPrompt))
 
     } catch (error) {
-        return new Response('Failed to updata like', {status: 500})
+        return new Response('Failed to updata like')
     }
 }
 
