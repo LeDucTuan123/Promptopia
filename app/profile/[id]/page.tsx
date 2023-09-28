@@ -3,7 +3,7 @@
 
 import Profile from '@/components/Profile'
 import axios from 'axios'
-import { useParams, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function UserProfile({params}: any) {

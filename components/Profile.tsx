@@ -16,9 +16,7 @@ export default function Profile({
   handleDelete,
   handleEdit,
 }: ProfileProps) {
-  // const handleSearchChange = (e: any) => {
-  //   setSearchText(e.target.value);
-  // };
+
 console.log(data, name)
   return (
     <section className="w-full">

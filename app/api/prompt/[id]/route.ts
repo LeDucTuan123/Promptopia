@@ -1,9 +1,8 @@
-import { connectToDB } from "@/utils/database"
-import Prompt from '@/models/prompt'
-import { PostType } from "@/types/post";
+import Prompt from '@/models/prompt';
+import { connectToDB } from "@/utils/database";
 // GET (read)
 
-export const GET = async (req: any, {params}: any) => {
+export const GET = async (req: Request, {params}: any) => {
     try {
         await connectToDB();
 
@@ -15,14 +14,14 @@ export const GET = async (req: any, {params}: any) => {
             status: 200
         })
     } catch (error) {
-        return new Response("Failed to fetch all prompts"), {
+        return Response.json(error), {
             status: 500
         }
     }
 }
 
 // PATCH (update)
-export const PATCH = async (req: any, {params}: any) => {
+export const PATCH = async (req: Request, {params}: any) => {
     const {prompt, tag, role} = await req.json();
 
     try {
@@ -46,7 +45,7 @@ export const PATCH = async (req: any, {params}: any) => {
 }
 
 // DELETE (delete)
-export const DELETE = async (req: any, {params}: any) => {
+export const DELETE = async (req: Request, {params}: any) => {
     try {
         await Prompt.findByIdAndRemove(params.id)
 
@@ -59,7 +58,7 @@ export const DELETE = async (req: any, {params}: any) => {
 }
 
 // PATCH (like)
-export const PUT = async (req: any, {params}: any) => {
+export const PUT = async (req: Request, {params}: any) => {
     const {like} = await req.json();
 
     try {

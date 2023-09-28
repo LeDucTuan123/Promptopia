@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
-import PromptCard from "./PromptCard";
+import { PostType } from "@/types/post";
 import { Icon } from "@iconify/react";
 import axios from "axios";
-import _debounce from "lodash/debounce";
-import { PostType } from "@/types/post";
 import { useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import PromptCard from "./PromptCard";
 
 export interface PropsCardList {
   data: PostType[];

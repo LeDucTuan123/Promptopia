@@ -4,8 +4,7 @@ import { PostType } from "@/types/post";
 import { Icon } from "@iconify/react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
   onHandleTagClick?: (e: any) => void;
   onHandleEdit?: () => void;
   onHandleDelete?: () => void;
-  onAddLike: (item: any) => {} | void;
+  onAddLike?: (item: any) => {} | void;
 }
 
 export default function PromptCard({
@@ -28,7 +27,6 @@ export default function PromptCard({
   const router = useRouter()
 
   const [copied, setCopied] = useState("");
-  // const [like, setLike] = useState(false)
 
   const handleLink = () => {
     router.push(session?.user.id === post.creator._id
