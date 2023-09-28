@@ -8,9 +8,9 @@ export const GET = async (req: Request, {params}: any) => {
 
         const prompts = await Prompt.findById(params.id).populate('creator')
 
-        if(!prompts) return new Response("Prompt not found")
+        if(!prompts) return Response.json("Prompt not found")
 
-        return new Response(JSON.stringify(prompts))
+        return Response.json(JSON.stringify(prompts))
     } catch (error) {
         return Response.json(error)
     }
@@ -33,10 +33,10 @@ export const PATCH = async (req: Request, {params}: any) => {
 
         await existingPrompt.save();
 
-        return new Response(JSON.stringify(existingPrompt))
+        return Response.json(JSON.stringify(existingPrompt))
 
     } catch (error) {
-        return new Response('Failed to updata prompt')
+        return Response.json('Failed to updata prompt')
     }
 }
 
@@ -45,10 +45,10 @@ export const DELETE = async (req: Request, {params}: any) => {
     try {
         await Prompt.findByIdAndRemove(params.id)
 
-        return new Response("Promps delete successfully")
+        return Response.json("Promps delete successfully")
 
     } catch (error) {
-        return new Response("Failded to delete promps")
+        return Response.json("Failded to delete promps")
         
     }
 }
@@ -62,16 +62,16 @@ export const PUT = async (req: Request, {params}: any) => {
 
         const existingPrompt = await Prompt.findById(params.id);
 
-        if(!existingPrompt) return new Response('like not found')
+        if(!existingPrompt) return Response.json('like not found')
 
         existingPrompt.like = like + 1;
 
         await existingPrompt.save();
 
-        return new Response(JSON.stringify(existingPrompt))
+        return Response.json(JSON.stringify(existingPrompt))
 
     } catch (error) {
-        return new Response('Failed to updata like')
+        return Response.json('Failed to updata like')
     }
 }
 
