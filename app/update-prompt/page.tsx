@@ -7,20 +7,16 @@ import Form from "@/components/Form";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export interface PostType {
-  prompt: string;
-  tag: string;
-  role: string;
-}
+import { PostType } from "@/app/create-prompt/page";
 
-const Post: PostType = { prompt: "", tag: "" };
+const Posts: PostType = { prompt: "", tag: "", role: ""};
 
 export default function EditPrompt() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
   
-  const [post, setPost] = useState(Post);
+  const [post, setPost] = useState(Posts);
   const [submitting, setSubmitting] = useState(false);
 
   

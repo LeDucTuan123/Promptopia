@@ -1,23 +1,28 @@
-import Prompt from '@/models/prompt';
-import { connectToDB } from "@/utils/database";
-// GET (read)
+import { connectToDB } from "@/utils/database"
+import Prompt from '@/models/prompt'
+import { NextApiRequest } from "next";
 
-export const GET = async (req: Request, {params}: any) => {
+// GET (read)
+export const GET = async (req: NextApiRequest, {params}: any) => {
     try {
         await connectToDB();
 
         const prompts = await Prompt.findById(params.id).populate('creator')
 
-        if(!prompts) return Response.json("Prompt not found")
+        if(!prompts) return new Response("Prompt not found", {status: 404})
 
-        return Response.json(JSON.stringify(prompts))
+        return new Response(JSON.stringify(prompts), {
+            status: 200
+        })
     } catch (error) {
-        return Response.json(error)
+        return new Response('Failed to Get Data'), {
+            status: 500
+        }
     }
 }
 
 // PATCH (update)
-export const PATCH = async (req: Request, {params}: any) => {
+export const PATCH = async (req: any, {params}: any) => {
     const {prompt, tag, role} = await req.json();
 
     try {
@@ -25,7 +30,7 @@ export const PATCH = async (req: Request, {params}: any) => {
 
         const existingPrompt = await Prompt.findById(params.id);
 
-        if(!existingPrompt) return new Response('Prompt not found')
+        if(!existingPrompt) return new Response('Prompt not found', {status: 404})
 
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
@@ -33,28 +38,28 @@ export const PATCH = async (req: Request, {params}: any) => {
 
         await existingPrompt.save();
 
-        return Response.json(JSON.stringify(existingPrompt))
+        return new Response(JSON.stringify(existingPrompt), {status: 200})
 
     } catch (error) {
-        return Response.json('Failed to updata prompt')
+        return new Response('Failed to updata prompt', {status: 500})
     }
 }
 
 // DELETE (delete)
-export const DELETE = async (req: Request, {params}: any) => {
+export const DELETE = async (req: any, {params}: any) => {
     try {
         await Prompt.findByIdAndRemove(params.id)
 
-        return Response.json("Promps delete successfully")
+        return new Response("Promps delete successfully", {status: 200})
 
     } catch (error) {
-        return Response.json("Failded to delete promps")
+        return new Response("Failded to delete promps", {status: 500})
         
     }
 }
 
 // PATCH (like)
-export const PUT = async (req: Request, {params}: any) => {
+export const PUT = async (req: any, {params}: any) => {
     const {like} = await req.json();
 
     try {
@@ -62,16 +67,16 @@ export const PUT = async (req: Request, {params}: any) => {
 
         const existingPrompt = await Prompt.findById(params.id);
 
-        if(!existingPrompt) return Response.json('like not found')
+        if(!existingPrompt) return new Response('like not found', {status: 404})
 
         existingPrompt.like = like + 1;
 
         await existingPrompt.save();
 
-        return Response.json(JSON.stringify(existingPrompt))
+        return new Response(JSON.stringify(existingPrompt), {status: 200})
 
     } catch (error) {
-        return Response.json('Failed to updata like')
+        return new Response('Failed to updata like', {status: 500})
     }
 }
 

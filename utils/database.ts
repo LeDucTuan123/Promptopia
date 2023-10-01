@@ -11,11 +11,11 @@ export const connectToDB = async () => {
     }
 
     try {
-        await mongooes.connect(process.env.MONGODB_URI, {
+        await mongooes.connect(process.env.MONGODB_URI||'', {
             dbName: "share_prompt",
             useNewUrlParser: true,
             useUnifiedTopology: true,
-        })
+        } as any)
 
         isConnected= true;
 

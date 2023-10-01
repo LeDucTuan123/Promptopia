@@ -92,9 +92,9 @@ export default function Form({
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+            className="w-[80.77px] h-[32px] text-sm bg-primary-orange rounded-full text-white flex items-center justify-center "
           >
-            {submitting ? `${type}...` : type}
+            {submitting ? <div className="w-4 h-4 border-t-transparent rounded-[50%] border-[1px] border-solid border-white animate-spin justify-center"></div> : type}
           </button>
         </div>
       </form>

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { getProviders, signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import Search from "./Search";
 
 export default function Nav() {
   const {data: session} = useSession();
@@ -21,7 +22,7 @@ export default function Nav() {
 
 
   return (
-    <nav className="flex-between w-full mb-16 pt-3">
+    <nav className="flex-between w-full fixed mb-16 top-0 bg-rose-200 p-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src="/assets/images/logo.svg"
@@ -30,7 +31,7 @@ export default function Nav() {
           height={30}
           className="object-cover"
         />
-        <p className="logo_text">Promptopia</p>
+        <p className="logo_text anm-surf">Promptopia</p>
       </Link>
 
       {/* Destop Navigation */}
@@ -74,11 +75,17 @@ export default function Nav() {
           </>
         )}
       </div>
+
+      <div className={`${session?.user? 'w-[75%]':'w-[55%]'}  sm:hidden flex `}>
+              <Search  />
+            </div>
+
       {/* // Mobie Navigation */}
       <div className="sm:hidden flex relative">
         {session?.user ? (
-          <div className="flex flex-row">
-                          <p className="text-zinc-700 items-center flex pr-4">{session?.user.name}</p>
+          <div className="flex">
+      
+            
 
             <Image
               src={session?.user.image || ''}

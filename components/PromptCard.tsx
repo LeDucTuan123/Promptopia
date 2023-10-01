@@ -9,7 +9,6 @@ import { useState } from "react";
 
 interface Props {
   post: PostType;
-  onHandleTagClick?: (e: any) => void;
   onHandleEdit?: () => void;
   onHandleDelete?: () => void;
   onAddLike?: (item: any) => {} | void;
@@ -17,7 +16,6 @@ interface Props {
 
 export default function PromptCard({
   post,
-  onHandleTagClick,
   onHandleDelete,
   onHandleEdit,
   onAddLike,
@@ -86,8 +84,7 @@ export default function PromptCard({
         <p className="text-gray-400">{post.role}</p>
         <div className="flex justify-between">
           <p
-            className="font-inter text-sm -blue_gradient cursor-pointer w-fit"
-            onClick={() => onHandleTagClick && onHandleTagClick(post.tag)}
+            className="font-inter text-sm -blue_gradient w-fit"
           >
             {" "}
             {post.tag}

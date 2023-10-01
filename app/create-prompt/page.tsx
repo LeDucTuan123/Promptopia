@@ -11,7 +11,7 @@ export interface PostType {
     prompt: string;
     tag: string;
     role: string;
-    like: number;
+    like?: number;
 }
 
 const Post: PostType = {prompt: '', tag: '', role: '', like: 0}
