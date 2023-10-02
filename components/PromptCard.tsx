@@ -40,7 +40,6 @@ export default function PromptCard({
     navigator.clipboard.writeText(post.prompt);
     setTimeout(() => setCopied(''), 3000);
   };
-  console.log(session);
   return (
     <>
       <div className='prompt_card'>

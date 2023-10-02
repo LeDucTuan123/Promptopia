@@ -1,16 +1,14 @@
 import { connectToDB } from '@/utils/database';
 import Prompt from '@/models/prompt';
-import { type NextRequest } from 'next/server';
 
 // GET (read)
 export const GET = async (
-  req: NextRequest,
-  { params }: any
-): Promise<Response> => {
+  req: any,
+) => {
   try {
     await connectToDB();
 
-    const prompts = await Prompt.findById(params.id).populate('creator');
+    const prompts = await Prompt.find({}).populate('creator');
 
     if (!prompts) return new Response('Prompt not found', { status: 404 });
 

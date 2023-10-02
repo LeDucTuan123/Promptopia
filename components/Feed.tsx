@@ -1,13 +1,12 @@
 "use client";
 
+import { option } from "@/constans";
 import { PostType } from "@/types/post";
-import { Icon } from "@iconify/react";
 import axios from "axios";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Loading from "./Loading";
 import PromptCard from "./PromptCard";
 import Search from "./Search";
-import Loading from "./Loading";
 
 export interface PropsCardList {
   data: PostType[];
@@ -25,8 +24,6 @@ const PromptCardList = ({ data, handleAddLike }: PropsCardList) => {
 };
 
 export default function Feed() {
-  const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
 
   const [post, setPost] = useState([]);
   const [searchText, setSearchText] = useState("All");
@@ -81,11 +78,12 @@ export default function Feed() {
       </div>
 
       <select className="mt-6" onChange={handleSearchChange}>
-        <option value="All">All</option>
-        <option value="Trò chơi">Trò chơi</option>
-        <option value="Văn học">Văn học</option>
-        <option value="Triếc lý">Triếc lý</option>
-        <option value="Công nghệ">Công nghệ</option>
+      <option value="All">All</option>
+        {option.map((item) => (
+          <option key={item.id} value={item.name}>
+            {item.name}
+          </option>
+        ))}
       </select>
 
       {post.length > 0 ? (

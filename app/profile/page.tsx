@@ -56,6 +56,7 @@ export default function MyPropfile() {
     <Profile
       name='My'
       desc='Welcome to your personalized profile page'
+      text={'Bạn chưa có bài đăng nào, vui lòng tạo bài đăng ngay và luôn'}
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

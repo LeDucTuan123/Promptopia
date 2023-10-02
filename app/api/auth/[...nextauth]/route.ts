@@ -41,7 +41,6 @@ const handler = NextAuth({
             username: profile.name.replace(/\s/g, '').toLowerCase(),
             image: profile.picture,
           });
-          console.log(User);
         }
 
         return true;

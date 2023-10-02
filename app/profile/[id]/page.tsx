@@ -25,6 +25,7 @@ export default function UserProfile({params}: any) {
         name={`${userName}`}
         desc={`Chào mừng bạn đến với trang cá nhân của ${userName}`}
         data={userPosts}
+        text={'Thanh niên này chưa có bài đăng nào'}
     />
   )
 }

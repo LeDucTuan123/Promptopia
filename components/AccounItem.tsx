@@ -40,7 +40,7 @@ export default function AccounItem({ item }: Props) {
             {item.email}
           </span>
         </h4>
-        <span className='font-[1.4rem] text-[rgba(22,24,35,0.5)]'>
+        <span className='font-[1.4rem] ml-[6px] text-[rgba(22,24,35,0.5)]'>
           {item.username}
         </span>
       </div>

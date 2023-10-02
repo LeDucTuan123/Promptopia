@@ -6,6 +6,7 @@ import Loading from "./Loading";
 
 interface ProfileProps {
   name: string;
+  text: string;
   desc: string;
   data: PostType[];
   handleEdit?: (post: PostType) => Promise<void>;
@@ -14,6 +15,7 @@ interface ProfileProps {
 
 export default function Profile({
   data,
+  text,
   desc,
   name,
   handleDelete,
@@ -22,11 +24,9 @@ export default function Profile({
   const [loadingPage, setLoadingPage] = useState(true);
 
   useEffect(() => {
-    if(data.length > 0){
-      setLoadingPage(false);
-    }
-  }, [data.length]);
-console.log(data)
+    setTimeout(() => setLoadingPage(false), 3000);
+  }, [data]);
+  console.log(data);
   return (
     <section className="w-full pt-14">
       <h1 className="head_text text-left">
@@ -59,7 +59,7 @@ console.log(data)
                 height={400}
               />
               <p className="text-2xl font-inter">
-                Bạn chưa có bài đăng nào, vui lòng tạo bài đăng ngay và luôn
+                {text}    
               </p>
             </div>
           )}

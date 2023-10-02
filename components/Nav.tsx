@@ -22,7 +22,7 @@ export default function Nav() {
 
 
   return (
-    <nav className="flex-between w-full fixed mb-16 top-0 bg-rose-200 p-3">
+    <nav className="flex-between fixed z-[10000] w-full mb-16 top-0 bg-opacity-90 bg-orange-200 p-3 sm:pl-14 sm:pr-14">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src="/assets/images/logo.svg"

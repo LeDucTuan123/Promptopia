@@ -8,7 +8,7 @@ import AccounItem from "./AccounItem";
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative w-full max-h-[min((100vh-60px)-60px,734px)] min-h-[100px] bg-gray-300 shadow-sm rounded-lg sm:top-[310px] top-0">
+    <div className="max-h-[min((100vh-60px)-60px,734px)] min-h-[100px] top-0 search_account">
       {children}
     </div>
   );
@@ -37,7 +37,6 @@ export default function Search() {
       .then((res) => {
         setSearchResult(res.data);
         setLoading(false);
-        console.log(res);
       })
       .catch(() => {
         setLoading(false);
@@ -63,13 +62,14 @@ export default function Search() {
     <HeadlessTippy
       interactive
       visible={showResutl && searchResult.length > 0}
+      placement="bottom"
       render={(attrs) => (
-        <div tabIndex={-1} {...attrs}>
+        <div className="sm:w-[491px]" tabIndex={1} {...attrs}>
           <Wrapper>
             <h4 className="text-gray-400 text-2xl pl-4">Account</h4>
             {searchResult.map((item, index) => (
               <AccounItem item={item} key={index} />
-            ))}
+              )).slice(0, 5)}
           </Wrapper>
         </div>
       )}
