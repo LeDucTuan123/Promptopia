@@ -195,14 +195,6 @@
 
 /* loading//// */
 
-
-.positions{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 200px;
-}
-
-
 /* Tailwind Styles */
 
 .app {

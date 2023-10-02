@@ -10,10 +10,9 @@ export default function Home() {
         <span className="orange_gradient text-center">AI-Powered Prompts</span>
       </h1>
       <p className="desc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. In numquam
-        libero necessitatibus dolore exercitationem officiis rem nihil cum.
-        Officiis, suscipit vero deserunt porro velit eaque fuga facere error
-        aliquid soluta!
+        Sau khi loading lại trang hoặc like hoặc đăng nhập vào,
+         bạn hãy bật qua trang khác và quay lại trang này sẽ được,
+          tính năng này hơi lạ mình chưa fix được ^^!
       </p>
       
 

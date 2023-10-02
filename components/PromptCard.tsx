@@ -28,7 +28,7 @@ export default function PromptCard({
 
   const handleLink = () => {
     router.push(
-      session?.user.id === post.creator._id
+      session?.user._id === post.creator._id
         ? '/profile'
         : `/profile/${post.creator._id}?name=${post.creator.username}`
     );
